@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Textil | Ropa Interior Mayorista</title>
+    <!-- Vinculamos el archivo CSS de estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Encabezado / Navegación -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-text">M-Textil <span>Mayorista</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#ventajas">Beneficios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Sección Principal / Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Distribución Mayorista de Ropa Interior</h1>
+            <p>Surtido directo de fábrica para negocios, distribuidores y emprendedores. Calidad garantizada al mejor precio por volumen.</p>
+            <a href="#catalogo" class="btn-primary">Ver Catálogo Mayorista</a>
+        </div>
+    </section>
+
+    <!-- Ventajas -->
+    <section class="benefits" id="ventajas">
+        <div class="benefit-card">
+            <h3>Precios Escalonados</h3>
+            <p>Descuentos directos según el volumen de compra en docenas o docenas mixtas.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>Envíos Nacionales</h3>
+            <p>Despachos a todo el país coordinados con las principales empresas de transporte.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>Atención Personalizada</h3>
+            <p>Asesoría directa vía WhatsApp para la gestión de tus pedidos y cotizaciones.</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="catalog" id="catalogo">
+        <h2 class="section-title">Catálogo de Productos</h2>
+        
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterProducts('dama')">Damas</button>
+            <button class="filter-btn" onclick="filterProducts('caballero')">Caballeros</button>
+            <button class="filter-btn" onclick="filterProducts('niños')">Niños/as</button>
+            <button class="filter-btn" onclick="filterProducts('otros')">Otros</button>
+        </div>
+
+        <div class="product-grid" id="productContainer">
+            <!-- Los productos se cargarán desde script.js -->
+        </div>
+    </section>
+
+    <!-- Banner Informativo -->
+    <section class="wholesale-banner">
+        <h2>¿Necesitas un pedido personalizado o importación especial?</h2>
+        <p>Atendemos pedidos por paquete, caja o contenedor.</p>
+    </section>
+
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>M-Textil</h4>
+                <p>Especialistas en distribución y venta al por mayor de prenda íntima y textil.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Ventas: +502 4131-0872</p>
+                <p>Email: m.textil502@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Condiciones de compra</h4>
+                <p>El cobro del envio es por aparte</p>
+                <p>Pago anticipado</p>
+                <p>Compra mínima: 5 Docena</p>
+                <p>Tiempos de entrega: 24 a 48 hrs</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 M-Textil Ropa Interior Mayorista. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Vinculamos el archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

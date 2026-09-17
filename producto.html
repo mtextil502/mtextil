@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto | M-Textil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-text">M-Textil <span>Mayorista</span></div>
+            </a>
+            <a href="index.html" class="btn-secondary">← Volver al Catálogo</a>
+        </div>
+    </header>
+
+    <main class="product-detail-container">
+        <!-- Galería de fotos -->
+        <div class="detail-gallery">
+            <div class="main-image-box">
+                <img id="mainProductImg" src="" alt="Imagen principal">
+            </div>
+            <div class="thumbnails-grid" id="thumbnailsContainer">
+                <!-- Se generan dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Información y Especificaciones -->
+        <div class="detail-info">
+            <span class="category-badge" id="productCategory">Categoría</span>
+            <h1 id="productTitle">Nombre del Producto</h1>
+            <div class="product-price" id="productPrice">Q 0.00</div>
+            <p class="pack-badge" id="productPack">Presentación: -</p>
+
+            <h3>Descripción del Producto</h3>
+            <p id="productDescription" class="description-text"></p>
+
+            <h3>Especificaciones Mayoristas</h3>
+            <ul id="productSpecs" class="specs-list">
+                <!-- Se generan dinámicamente -->
+            </ul>
+
+            <button class="btn-whatsapp-large" id="btnWhatsappQuote">
+                Pedir / Cotizar por WhatsApp
+            </button>
+        </div>
+    </main>
+
+    <!-- Cargar datos e interacciones -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Obtener el ID desde la URL (?id=1)
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+
+            // Buscar el producto en el array de script.js
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+                // Llenar datos básicos
+                document.getElementById('productTitle').innerText = product.name;
+                document.getElementById('productPrice').innerText = product.price;
+                document.getElementById('productPack').innerText = `Presentación: ${product.pack}`;
+                document.getElementById('productCategory').innerText = product.category.toUpperCase();
+                document.getElementById('productDescription').innerText = product.description || "Sin descripción disponible.";
+
+                // Llenar lista de especificaciones
+                const specsList = document.getElementById('productSpecs');
+                specsList.innerHTML = '';
+                if(product.specs) {
+                    product.specs.forEach(spec => {
+                        const li = document.createElement('li');
+                        li.innerText = spec;
+                        specsList.appendChild(li);
+                    });
+                }
+
+                // Cargar imágenes
+                const mainImg = document.getElementById('mainProductImg');
+                const thumbsContainer = document.getElementById('thumbnailsContainer');
+                thumbsContainer.innerHTML = '';
+
+                if(product.images && product.images.length > 0) {
+                    mainImg.src = product.images[0];
+
+                    product.images.forEach((imgSrc, index) => {
+                        const thumb = document.createElement('img');
+                        thumb.src = imgSrc;
+                        thumb.className = index === 0 ? 'thumb-img active' : 'thumb-img';
+                        thumb.onclick = () => {
+                            mainImg.src = imgSrc;
+                            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+                            thumb.classList.add('active');
+                        };
+                        thumbsContainer.appendChild(thumb);
+                    });
+                }
+
+                // Configurar enlace de WhatsApp
+                const phone = "50200000000"; // Tu número de teléfono
+                const btnWs = document.getElementById('btnWhatsappQuote');
+                btnWs.onclick = () => {
+                    const message = encodeURIComponent(`Hola M-Textil, me interesa cotizar el producto: ${product.name} (${product.price}). Presentación: ${product.pack}`);
+                    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                };
+            } else {
+                document.querySelector('.product-detail-container').innerHTML = '<h2>Producto no encontrado</h2><a href="index.html">Volver al catálogo</a>';
+            }
+        });
+    </script>
+</body>
+</html>
